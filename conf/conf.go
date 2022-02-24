@@ -24,6 +24,7 @@ func Auto() {
 	Load(cfgtoml)
 }
 func Load(cfgfile string) {
+	cfgtoml = cfgfile
 	config, err := toml.LoadFile(cfgfile) //加载toml文件
 	if err != nil {
 		panic(err)
@@ -33,7 +34,7 @@ func Load(cfgfile string) {
 
 func Get(k string) interface{} {
 	if Data == nil {
-		return nil
+		Auto()
 	}
 	return Data.Get(k)
 }
