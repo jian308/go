@@ -19,9 +19,14 @@ func SetLevel(level zapcore.Level) {
 	loglv = level
 	intLog()
 }
+
 func SetPath(path string) {
 	logpath = path
-	logio = true
+	intLog()
+}
+
+func SetIo(io bool) {
+	logio = io
 	intLog()
 }
 
