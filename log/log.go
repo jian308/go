@@ -12,6 +12,7 @@ import (
 
 var loglv = zap.DebugLevel
 var logio = false
+var logmax = 100
 var logpath = "./"
 
 // 设置日志级别
@@ -25,8 +26,9 @@ func SetPath(path string) {
 	intLog()
 }
 
-func SetIo(io bool) {
+func SetIo(io bool, max int) {
 	logio = io
+	logmax = max
 	intLog()
 }
 
@@ -105,7 +107,7 @@ func getLogWriter() zapcore.WriteSyncer {
 	lumberJackLogger := &lumberjack.Logger{
 		Filename:   logpath + "log.log",
 		MaxSize:    1,
-		MaxBackups: 5,
+		MaxBackups: logmax,
 		MaxAge:     30,
 		Compress:   false,
 	}
